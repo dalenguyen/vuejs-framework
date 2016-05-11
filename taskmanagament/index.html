@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html leng="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chương Trình Quản Lý Nhiệm Vụ - Timhieumaytinh.com</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+	<div class="container">
+		<div id="tasks">
+			<div>
+				<a href="http://timhieumaytinh.com/khoa-hoc/"><img src="http://timhieumaytinh.com/wp-content/uploads/2015/11/THMT-Logo-340x100.png"></a>
+				<h2 v-show="remaining.length">Nhiệm Vụ Mới ({{remaining.length}})</h2>
+				<ol class="list-group">
+					<li v-for="task in tasks | inProcess" class="list-group-item">
+						<span @dblclick="editTask(task)">{{task.body}}</span>
+						<button @click="removeTask(task)">&#10007;</button>
+						<button @click="completeTask(task)">&#10004;</button>
+					</li>
+				</ol>
+
+				</div>
+			<form @submit="addTask">
+				<div class="form-group">
+					<input v-el:newtask
+								v-model="newTask"
+								class="form-control"
+								placeholder="Tôi muốn...">
+				</div>
+
+				<button class="btn btn-primary" type="submit">Thêm Nhiệm Vụ</button>
+				<button class="btn btn-default" @click="completeAll">Hoàn Tất Hết?</button>
+			</form>
+
+			<div v-if="completions.length">
+					<h2 >Đã Hoàn Tất ({{completions.length}})</h2>
+					<ol class="list-group">
+						<li v-for="task in tasks | filterBy true in 'completed'" class="list-group-item">
+								<span>{{task.body}}
+									<button @click="toggleCompleteTask(task)">&#10007;</button>
+						</li>
+						<button @click="clearCompleted" class="btn btn-danger">Xóa Nhiệm Vụ Đã Hoàn Tất</button>
+					</ol>
+			</div>
+			<hr>
+			<pre>{{$data | json}}</pre>
+		</div>
+	</div>
+	<script src="js/vue.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
+
