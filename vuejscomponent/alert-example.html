@@ -5,9 +5,11 @@
     <title>Component Alert Sample</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css
 
-" media="screen" title="no title" charset="utf-8">
+">
   </head>
   <body>
+    <a href="http://timhieumaytinh.com/khoa-hoc/"><img src="http://timhieumaytinh.com/wp-content/uploads/2015/11/THMT-Logo-340x100.png"></a>
+
     <alert>
       <strong>General!</strong> Your account has not been updated.
     </alert>
@@ -22,14 +24,15 @@
 
     <template id="alert-template">
       <div :class="alertClasses" v-show="show">
-        <slot></slot>
+        <slot></slot>        
         <span class="close" @click="show = false">x</span>
       </div>
     </template>
 
-    <script type="text/javascript" src="http://vuejs.org/js/vue.js">
-    </script>
+    <script type="text/javascript" src="http://vuejs.org/js/vue.js"></script>
+
     <script type="text/javascript">
+    // Global component
       Vue.component('alert', {
         template: '#alert-template',
 
@@ -54,6 +57,7 @@
         }
       });
 
+      // Declare Vue instance
       new Vue({
         el: 'body'
       });
