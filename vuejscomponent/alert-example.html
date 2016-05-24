@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Component Alert Sample</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css
+
+" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <alert>
+      <strong>General!</strong> Your account has not been updated.
+    </alert>
+
+    <alert type="success">
+      <strong>Success!</strong> Your account has been updated.
+    </alert>
+
+    <alert type="error">
+      <strong>Error!</strong> Your account has not been updated.
+    </alert>
+
+    <template id="alert-template">
+      <div :class="alertClasses" v-show="show">
+        <slot></slot>
+        <span class="close" @click="show = false">x</span>
+      </div>
+    </template>
+
+    <script type="text/javascript" src="http://vuejs.org/js/vue.js">
+    </script>
+    <script type="text/javascript">
+      Vue.component('alert', {
+        template: '#alert-template',
+
+        props: ['type'],
+
+        data: function() {
+          return {
+            show: true
+          };
+        },
+
+        computed: {
+          alertClasses: function() {
+            var type = this.type;
+
+            return {
+              'alert bg-primary' : true,
+              'bg-success' : type == 'success',
+              'bg-danger' : type == 'error'
+            }
+          }
+        }
+      });
+
+      new Vue({
+        el: 'body'
+      });
+    </script>
+  </body>
+</html>
