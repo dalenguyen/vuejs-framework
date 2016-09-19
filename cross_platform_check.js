@@ -1,4 +1,5 @@
 <script>
+// For JavaScript
   if(window.addEventListener){ // for >= IE9
     document.getElementById('id').addEventListener('click', function(){
       // your function code
@@ -8,4 +9,9 @@
       // your function code
     });
   }
+  
+// For JQuery
+$('id').on('click', function(event){
+  // your function code
+});
 </script>
