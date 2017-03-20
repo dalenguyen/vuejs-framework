@@ -1,0 +1,48 @@
+// html content 
+
+<canvas id="report" width="300" height="300" ref="canvas"></canvas>
+
+// script
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.js"></script>
+    <script src="/juliet/public/dist/vuejs/vue-resource.js"></script>
+
+    <script>
+
+        new Vue({
+            el: '#report',
+
+            mounted: function(){
+                this.start();
+            },
+
+            methods: {
+                start: function(){
+
+                    var canvas = this.$refs.canvas;                    
+
+                    // init chart.js
+                    let chart = new Chart(canvas, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: [12, 19, 3, 5, 2, 3]
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    })
+                }
+            }
+        });
+    </script>
